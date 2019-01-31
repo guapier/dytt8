@@ -112,4 +112,6 @@ class Dytt8SpiderSpider(scrapy.Spider):
 
 - python3 main.py
 
+- 顺便star一下呗
+
 
