@@ -37,6 +37,10 @@ class Dytt8SpiderSpider(scrapy.Spider):
 
         for url in detail_urls:
             yield scrapy.Request(response.urljoin(url), headers=self.headers, callback=self.detail)
+        next_page = response.xpath('.//a[contains(text(),"下一页")]/@href').extract_first()
+        if next_page is not None:
+            next_page = response.urljoin(next_page)
+            yield scrapy.Request(next_page,headers=self.headers, callback=self.parse)
 
     def detail(self, response):
 
