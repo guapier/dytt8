@@ -44,13 +44,13 @@ class Dytt8SpiderSpider(scrapy.Spider):
   
     def start_requests(self):  
         base_url = 'https://www.dytt8.net/html/gndy/{}/index.html'  
-  categories = ['china', 'rihan', 'oumei', 'dyzz']  
+        categories = ['china', 'rihan', 'oumei', 'dyzz']  
         for category in categories:  
             yield scrapy.Request(base_url.format(category), headers=self.headers, callback=self.parse)  
   
     def parse(self, response):  
         # xpath('//div[contains(@class,"a") and contains(@class,"b")]') #它会取class含有有a和b的元素  
-  detail_urls = response.xpath('//a[@class="ulink"]/@href').extract()  
+        detail_urls = response.xpath('//a[@class="ulink"]/@href').extract()  
         detail_urls = [url for url in detail_urls if 'index' not in url]  
         print(detail_urls)  
   
@@ -111,5 +111,7 @@ class Dytt8SpiderSpider(scrapy.Spider):
 - cd dytt8
 
 - python3 main.py
+
+- 顺便star一下呗
 
 
